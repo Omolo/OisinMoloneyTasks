@@ -6,7 +6,7 @@ using OpenQA.Selenium.Chrome;
 using SeleniumExtras.PageObjects;
 
 
-namespace OisinMoloneyTasks.PageObjects
+namespace OisinMoloneySeleniumTasks.PageObjects
 {
     class HomePage
     {
@@ -19,6 +19,9 @@ namespace OisinMoloneyTasks.PageObjects
 
         [FindsBy(How = How.ClassName, Using = "icon-cross")]
         public IWebElement CookiePolicyBannerCloseButton { get; set; }
+
+        [FindsBy(How = How.Id, Using = "f-loginlinks")]
+        public IWebElement myAccountLogin { get; set; }
 
         public void CreateAndRunSearch(string query)
         {

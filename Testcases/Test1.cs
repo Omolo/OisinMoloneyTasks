@@ -1,53 +1,17 @@
 using NUnit.Framework;
-using OisinMoloneyTasks.PageObjects;
+using OisinMoloneySeleniumTasks.PageObjects;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using SeleniumExtras.PageObjects;
 using System;
 using System.IO;
 
-namespace OisinMoloneyTasks
+namespace OisinMoloneySeleniumTasks.Testcases
 {
-    class Task1
+    class Test1
     {
         string Address = "https://www.dunnesstores.com/";
-        
-        [Test]
-        public void GoToWebPage()
-        {
-            
-            IWebDriver driver = new ChromeDriver();
-            // Launch browser at page
-            driver.Url = Address;
 
-            // Validate page is loaded
-            Assert.AreEqual("Dunnes Stores | Fashion, Home, Kids & More", driver.Title);
-
-            // Close browser
-            driver.Close();
-        }
-
-        [Test]
-        public void RunASearch()
-        {
-            IWebDriver driver = new ChromeDriver();
-            string searchQuery = "Hamptons Lamp";
-
-            // Launch browser at page
-            driver.Url = Address;
-
-            // Close cookie policy banner, if open
-            WebPages.homePage.CloseCookiesBanner();
-
-            // Enter search query
-            WebPages.homePage.CreateAndRunSearch(searchQuery);
-
-            // Validate result is returned
-            Assert.IsTrue(UtilityClasses.ExtensionsClass.CheckElementExists(WebPages.resultsPage.SearchResult));
-
-            // Close browser
-            driver.Close();
-        }
 
         [Test]
         public void ClickResultLink()
@@ -55,23 +19,34 @@ namespace OisinMoloneyTasks
             IWebDriver driver = new ChromeDriver();
             string searchQuery = "Hamptons Lamp";
 
+            var homePage = new HomePage();
+            PageFactory.InitElements(driver, homePage);
+
+            var resultsPage = new ResultsPage();
+            PageFactory.InitElements(driver, resultsPage);
+
+            var resultPage = new ResultPage();
+            PageFactory.Equals(driver, resultPage);
+
             // Launch browser at page
             driver.Url = Address;
 
             // Close cookie policy banner, if open
-            WebPages.homePage.CloseCookiesBanner();
+            homePage.CloseCookiesBanner();
 
             // Enter search query
-            WebPages.homePage.CreateAndRunSearch(searchQuery);
+            homePage.CreateAndRunSearch(searchQuery);
 
             // Validate result is returned
-            Assert.IsTrue(UtilityClasses.ExtensionsClass.CheckElementExists(WebPages.resultsPage.SearchResult));
+            Assert.IsTrue(UtilityClasses.ExtensionsClass.CheckElementExists(resultsPage.SearchResult));
 
             // Click into result link
-            WebPages.resultsPage.SearchResult.Click();
+            resultsPage.SearchResult.Click();
 
+            // Validate page is loaded
+            Assert.AreEqual("Dunnes Stores | Blue Paul Costelloe Living Hamptons Lamp", driver.Title);
 
-        //    driver.Close();
+            driver.Close();
 
         }
 

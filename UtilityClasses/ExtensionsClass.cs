@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 
-namespace OisinMoloneyTasks.UtilityClasses
+
+namespace OisinMoloneySeleniumTasks.UtilityClasses
 {
     public static class ExtensionsClass
     {
@@ -16,5 +17,8 @@ namespace OisinMoloneyTasks.UtilityClasses
 
             }
         }
+
+
+
     }
 }

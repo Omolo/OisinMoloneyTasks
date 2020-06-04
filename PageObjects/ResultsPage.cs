@@ -6,11 +6,11 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.IE;
 using SeleniumExtras.PageObjects;
 
-namespace OisinMoloneyTasks.PageObjects
+namespace OisinMoloneySeleniumTasks.PageObjects
 {
     class ResultsPage
     {
-        [FindsBy(How = How.PartialLinkText, Using = "Lamp")]
+        [FindsBy(How = How.PartialLinkText, Using = "Hamptons Lamp")]
         public IWebElement SearchResult {get; set;}
     }
 }
